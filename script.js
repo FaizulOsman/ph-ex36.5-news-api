@@ -1,21 +1,16 @@
 /* Load Data From Api */
-const loadData = async (categories) => {
-    // const res = await fetch(`${categories}`)
-    // const data = await res.json()
-    // return data.articles
-    try {
-        const res = await fetch(`${categories}`)
-        const data = await res.json()
-        return data.articles
-    } catch (error) {
-        console.log(error)
-    }
+const loadData = categories => {
+    fetch(`${categories}`)
+        .then(res => res.json())
+        .then(data => dataInArray(data))
+        .catch(error => console.log(error))
+
 }
 
 /* News card making section */
 const newsSection = document.getElementById('news-section')
-const dataInArray = async (categories) => {
-    const load = await loadData(categories)
+const dataInArray = data => {
+    const load = data.articles
     load.forEach(news => {
         const div = document.createElement('div')
         div.classList.add("card", "card-side,", "bg-base-100", "shadow-xl", "md:flex-row", "flex-col")
@@ -34,34 +29,35 @@ const dataInArray = async (categories) => {
         `
         newsSection.appendChild(div)
     })
+    // console.log(load)
 }
 /* Default Newses */
-dataInArray('https://newsapi.org/v2/everything?q=apple&from=2022-09-04&to=2022-09-04&sortBy=popularity&apiKey=f52659402bc34ee3b826484d13c93f62')
+loadData('https://newsapi.org/v2/everything?q=apple&from=2022-09-04&to=2022-09-04&sortBy=popularity&apiKey=f52659402bc34ee3b826484d13c93f62')
 
 
 /* Categories Onclick Handler */
 const apple = () => {
     newsSection.innerHTML = ``
     const appleApi = `https://newsapi.org/v2/everything?q=apple&from=2022-09-04&to=2022-09-04&sortBy=popularity&apiKey=f52659402bc34ee3b826484d13c93f62`
-    dataInArray(appleApi)
+    loadData(appleApi)
 }
 const tesla = () => {
     newsSection.innerHTML = ``
     const teslaApi = `https://newsapi.org/v2/everything?q=tesla&from=2022-08-05&sortBy=publishedAt&apiKey=f52659402bc34ee3b826484d13c93f62`
-    dataInArray(teslaApi)
+    loadData(teslaApi)
 }
 const business = () => {
     newsSection.innerHTML = ``
     const businessApi = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f52659402bc34ee3b826484d13c93f62`
-    dataInArray(businessApi)
+    loadData(businessApi)
 }
 const techCrunch = () => {
     newsSection.innerHTML = ``
     const techCrunchApi = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=f52659402bc34ee3b826484d13c93f62`
-    dataInArray(techCrunchApi)
+    loadData(techCrunchApi)
 }
 const wallStreet = () => {
     newsSection.innerHTML = ``
     const wallStreetApi = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=f52659402bc34ee3b826484d13c93f62`
-    dataInArray(wallStreetApi)
+    loadData(wallStreetApi)
 }
