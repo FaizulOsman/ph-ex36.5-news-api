@@ -4,7 +4,6 @@ const loadData = categories => {
         .then(res => res.json())
         .then(data => dataInArray(data))
         .catch(error => console.log(error))
-
 }
 
 /* News card making section */
