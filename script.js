@@ -10,7 +10,7 @@ const loadData = categories => {
 const newsSection = document.getElementById('news-section')
 const dataInArray = data => {
     const load = data.articles
-    load.forEach(news => {
+    load?.forEach(news => {
         const div = document.createElement('div')
         div.classList.add("card", "card-side,", "bg-base-100", "shadow-xl", "md:flex-row", "flex-col")
         div.innerHTML = `
