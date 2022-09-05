@@ -1,6 +1,6 @@
 /* Load Data From Api */
 const loadData = categories => {
-    fetch(`${categories}`)
+    fetch(categories)
         .then(res => res.json())
         .then(data => dataInArray(data))
         .catch(error => console.log(error))
