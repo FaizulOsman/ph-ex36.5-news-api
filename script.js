@@ -1,15 +1,15 @@
 /* Load Data From Api */
 const loadData = async (categories) => {
-    const res = await fetch(`${categories}`)
-    const data = await res.json()
-    return data.articles
-    // try {
-    //     const res = await fetch(`${categories}`)
-    //     const data = await res.json()
-    //     return data.articles
-    // } catch (error) {
-    //     console.log(error)
-    // }
+    // const res = await fetch(`${categories}`)
+    // const data = await res.json()
+    // return data.articles
+    try {
+        const res = await fetch(`${categories}`)
+        const data = await res.json()
+        return data.articles
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 /* News card making section */
